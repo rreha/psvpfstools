@@ -67,13 +67,13 @@ void getFileListNoPfs(std::filesystem::path root_path, std::set<std::filesystem:
 
          //skip pfs directory
          if(cp.filename() == std::filesystem::path("sce_pfs")) {
-            i.pop();
+            i.disable_recursion_pending();
             continue;
          }
 
          //skip packages
          if(cp == (root_path / std::filesystem::path("sce_sys/package"))) {
-            i.pop();
+            i.disable_recursion_pending();
             continue;
          }
 
@@ -81,7 +81,7 @@ void getFileListNoPfs(std::filesystem::path root_path, std::set<std::filesystem:
          if(cp.filename() == "sce_sys" &&
                cp != root_path / std::filesystem::path("sce_sys") &&
                std::filesystem::exists(cp / std::filesystem::path("keystone"))) {
-            i.pop();
+            i.disable_recursion_pending();
             continue;
          }
 
